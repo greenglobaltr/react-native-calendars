@@ -66,12 +66,8 @@ class ReservationList extends Component {
   updateReservations(props) {
     const reservations = this.getReservations(props);
     if (this.list && !dateutils.sameDate(props.selectedDay, this.selectedDay)) {
-      let scrollPosition = 0;
-      for (let i = 0; i < reservations.scrollPosition; i++) {
-        scrollPosition += this.heights[i] || 0;
-      }
       this.scrollOver = false;
-      this.list.scrollToOffset({offset: scrollPosition, animated: true});
+      this.list.scrollToOffset({offset: 0, animated: true});
     }
     this.selectedDay = props.selectedDay;
     this.updateDataSource(reservations.reservations);
