@@ -394,7 +394,7 @@ export default class AgendaView extends Component {
 
     const headerStyle = [
       this.styles.header,
-      {bottom: agendaHeight, transform: [{translateY: headerTranslate}]}
+      { backgroundColor:'red',height:'100%'}
     ];
 
     if (!this.state.calendarIsReady) {
@@ -429,9 +429,7 @@ export default class AgendaView extends Component {
 
     return (
       <View testID={this.props.testID} onLayout={this.onLayout} style={[this.props.style, {flex: 1, overflow: 'hidden'}]}>
-        <View style={this.styles.reservations}>
-          {this.renderReservations()}
-        </View>
+        
         <Animated.View style={headerStyle}>
           <Animated.View style={{flex: 1, transform: [{translateY: contentTranslate}]}}>
             <CalendarList
@@ -449,7 +447,6 @@ export default class AgendaView extends Component {
               markingType={this.props.markingType}
               removeClippedSubviews={this.props.removeClippedSubviews}
               onDayPress={this._chooseDayFromCalendar.bind(this)}
-              scrollEnabled={this.state.calendarScrollable}
               hideExtraDays={shouldHideExtraDays}
               firstDay={this.props.firstDay}
               monthFormat={this.props.monthFormat}
@@ -461,13 +458,7 @@ export default class AgendaView extends Component {
               showWeekNumbers={this.props.showWeekNumbers}
             />
           </Animated.View>
-          {knob}
-        </Animated.View>
-        <Animated.View style={weekdaysStyle}>
-          {this.props.showWeekNumbers && <Text allowFontScaling={false} style={this.styles.weekday} numberOfLines={1}></Text>}
-          {weekDaysNames.map((day, index) => (
-            <Text allowFontScaling={false} key={day + index} style={this.styles.weekday} numberOfLines={1}>{day}</Text>
-          ))}
+        
         </Animated.View>
         <Animated.ScrollView
           ref={ref => this.scrollPad = ref}
@@ -488,8 +479,8 @@ export default class AgendaView extends Component {
         >
           <View
             testID={AGENDA_CALENDAR_KNOB}
-            style={{height: agendaHeight + KNOB_HEIGHT}}
             onLayout={this.onScrollPadLayout}
+style={{height:'100%'}}
           />
         </Animated.ScrollView>
       </View>
